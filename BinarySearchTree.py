@@ -10,7 +10,7 @@ class BinarySearchTree:
         self.root = None
 
     def isEmpty(self, root):
-        if self.root is None:
+        if root is None:
             return True
         else:
             return False
