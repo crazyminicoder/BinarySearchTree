@@ -9,6 +9,12 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
+    def isEmpty(self, root):
+        if self.root is None:
+            return True
+        else:
+            return False
+
     def insert(self, val):
         if self.root is None:
             self.root = Node(val)
@@ -47,8 +53,7 @@ class BinarySearchTree:
             print(root.data, end=' ')
 
     def findMin(self, root):
-        if root is None:
-            print('Tree is empty')
+        if self.isEmpty(root):
             return
         temp = root
         while temp.left is not None:
