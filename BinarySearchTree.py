@@ -105,6 +105,44 @@ class BinarySearchTree:
         else:
             self._search(root.right, key)
 
+    def delete(self, key):
+        self.root = self._delete(self.root, key)
+
+    def _delete(self, root, key):
+        if not root:
+            return root
+
+        if key < root.data:
+            root.left = self._delete(root.left, key)
+
+        elif key > root.data:
+            root.right = self._delete(root.right, key)
+
+        else:
+            if root.left is None:
+                return root.right
+            elif root.right is None:
+                return root.left
+
+            # Node with two children:
+            # Get the inorder successor (smallest in the right subtree)
+            temp = self._minValuenode(root.right)
+
+            # Copy the inorder successor's content to this node
+            root.data = temp.data
+
+            # Delete the inorder successor
+            root.right = self._delete(root.right, temp.data)
+
+        return root
+
+    def _minValueNode(self, node):
+        current = node
+        # Loop to find the leftmost leaf
+        while current.left is not None:
+            current = current.left
+        return current
+
 
 bt = BinarySearchTree()
 
@@ -135,3 +173,7 @@ bt.findMax(bt.root)
 bt.findHeight(bt.root)
 
 bt.search(bt.root, 2)
+
+bt.delete(67)
+
+bt.inorder(bt.root)
