@@ -143,6 +143,19 @@ class BinarySearchTree:
             current = current.left
         return current
 
+    def leftDepth(self, root):
+        if self.root is None:
+            print("Terr is empty")
+            return
+        temp = self.root
+        count = 0
+        while temp:
+            print(temp.data)
+            temp = temp.left
+            count += 1
+
+        print("The depth of the left sub-tree is: ", count)
+
 
 bt = BinarySearchTree()
 
@@ -177,3 +190,5 @@ bt.search(bt.root, 2)
 bt.delete(67)
 
 bt.inorder(bt.root)
+
+bt.leftDepth(bt.root)
